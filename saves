@@ -1,0 +1,62 @@
+<?php
+
+$dataPoints = array(
+	array("y" => 25, "label" => "Sunday"),
+	array("y" => 15, "label" => "Monday"),
+	array("y" => 25, "label" => "Tuesday"),
+	array("y" => 5, "label" => "Wednesday"),
+	array("y" => 10, "label" => "Thursday"),
+	array("y" => 0, "label" => "Friday"),
+	array("y" => 20, "label" => "Saturday")
+);
+ 
+$link=mysqli_connect("localhost","root","");
+mysqli_select_db($link,"store");
+
+$test=array();
+
+$count=0;
+$res=mysqli_query($link,"select * from sold");
+while($row=mysqli_fetch_array($res))
+{
+    $test[$count]["label"]=$row["name"];
+    $test[$count]["y"]=$row["amount"];
+    $count=$count+1;
+}
+
+?>
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function () {
+ 
+var chart = new CanvasJS.Chart("chartContainer", {
+	title: {
+		text: "Sales Report"
+	},
+	axisY: {
+		title: "Monthly Sales"
+	},
+	data: [{
+		type: "line",
+		dataPoints: <?php echo json_encode($test, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+ 
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+</body>
+</html>  
+
+</body>
+</html>
+
+<script type="text/javascript">
+  $(document).ready(function(){$(".rightAccount").click(function(){$(".account").fadeToggle();});});
+</script>

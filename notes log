@@ -1,0 +1,26 @@
+        REMEMBER TO CHANGE SOME STUFF on addnew.php
+PLACEHOLDER UNIT= type
+
+<div class="form-group">
+    <label for="some" class="col-form-label">Supplier Name</label>
+    <input type="text" name="supplier"  class="form-control" id="some" required>
+  </div>
+  dibawah price
+
+  
+  <div class="form-group">
+    <label for="some" class="col-form-label">Medicine Company Name</label>
+    <input type="text" name="company"  class="form-control" id="some" required>
+  </div>
+  dibawah supplier
+
+  <div class="form-group">
+    <label for="some" class="col-form-label">Category </label>
+    <select class="form-control" required name="catId">
+      <option selected disabled value="">Select Any</option>
+    <?php getAllCat(); ?>
+
+    <div class="form-group">
+        <label for="some" class="col-form-label">Description</label>
+      <textarea class="form-control" name="discription" required placeholder="Write some description"></textarea> 
+      </div>
